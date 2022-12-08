@@ -10,14 +10,18 @@ def totalCalories(caloriesList: str):
 def getCaloriesPerElseList(input: str):
   return input.split('\n\n')
 
-def findMaxCalories(input: str):
-  maxCalories = 0
+def findMaxCaloriesPerElfList(input: str):
+  maxCaloriesPerElfList = []
   caloriesPerElfList = getCaloriesPerElseList(input)
   for caloriesPerElf in caloriesPerElfList:
     caloriesList = caloriesPerElf.splitlines()
     totalCaloriesPerElf = totalCalories(caloriesList)
-    if totalCaloriesPerElf > maxCalories:
-      maxCalories = totalCaloriesPerElf
-  return maxCalories
+    maxCaloriesPerElfList.append(totalCaloriesPerElf)
+  return maxCaloriesPerElfList
 
-print(findMaxCalories(input))
+maxCaloriesPerElfList = findMaxCaloriesPerElfList(input)
+maxCaloriesPerElfList.sort(reverse=True)
+print('How many total Calories is that Elf carrying?')
+print(maxCaloriesPerElfList[0])
+print('How many Calories are those Elves carrying in total?')
+print(maxCaloriesPerElfList[0] + maxCaloriesPerElfList[1] + maxCaloriesPerElfList[2])
