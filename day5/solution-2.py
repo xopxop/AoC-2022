@@ -44,8 +44,10 @@ def solution(input: str):
 	for instruction in instructions:
 		fromStack = stacks[int(instruction.fromStack) - 1]
 		toStack = stacks[int(instruction.toStack) - 1]
-		for i in range(0, int(instruction.createNo)):
-			toStack.crates.append(fromStack.crates.pop())
+		index = int(instruction.createNo)
+		while index > 0:
+			toStack.crates.append(fromStack.crates.pop(-index))
+			index -= 1
 	answer = ""
 	for stack in stacks:
 		answer += stack.crates[-1].name
